@@ -10,43 +10,43 @@ pool:
   vmImage: ubuntu-latest
 
 stages:
-- stage: Build
-  jobs:
-    - job: FirstJob
-      steps:
-      - bash: echo Build Firstjob
-    - job: Second Job
-      steps:
-      - bash: echo Build Secondjob
+  - stage: Build
+    jobs:
+      - job: FirstJob
+        steps:
+          - bash: echo Build Firstjob
 
-- stage: DevDepoly
-  jobs:
-    - job: FirstJob
-      steps:
-      - bash: echo Build Firstjob
-- stage: QADepoly
-jobs:
-  - job: FirstJob
-    steps:
-      - bash: echo QABuild Firstjob
+      - job: SecondJob
+        steps:
+          - bash: echo Build Secondjob
 
-  - job: SecondJob
-    steps:
-      - bash: echo QA Build Secondjob
+  - stage: DevDepoly
+    jobs:
+      - job: DevDepolyJob
+        steps:
+          - bash: echo Build DevDepolyJob
 
-- stage: prodepoly
-  jobs:
-    - job: FirstJob
-      steps:
-        - bash: echo prodBuild Firstjob
+  - stage: QADepoly
+    jobs:
+      - job: QADepolyjob
+        steps:
+          - bash: echo QABuild QADepolyjob
 
-    - job: SecondJob
-      steps:
-        - bash: echo Build Secondjob
+      - job: SecondJob
+        steps:
+          - bash: echo QA Build QADepolyjob
+
+  - stage: prodepoly
+    jobs:
+      - job: prodepolyjob
+        steps:
+          - bash: echo prodepolyjob
+
+      - job: SecondJob
+        steps:
+          - bash: echo prodepolyjob
 
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+
 
  
