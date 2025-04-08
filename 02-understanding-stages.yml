@@ -21,30 +21,36 @@ stages:
           - bash: echo Build Secondjob
 
   - stage: DevDepoly
+    dependsOn: Build
     jobs:
       - job: DevDepolyJob
         steps:
           - bash: echo Build DevDepolyJob
 
   - stage: QADepoly
+    dependsOn: Build
     jobs:
-      - job: QADepolyjob
+      - job: QADepolyJob
         steps:
-          - bash: echo QABuild QADepolyjob
+          - bash: echo QABuild QADepolyJob
 
       - job: SecondJob
         steps:
-          - bash: echo QA Build QADepolyjob
+          - bash: echo QA Build QADepolyJob
 
   - stage: prodepoly
+    dependsOn:
+      - DevDepoly
+      - QADepoly
     jobs:
-      - job: prodepolyjob
+      - job: prodepolyJob
         steps:
-          - bash: echo prodepolyjob
+          - bash: echo prodepolyJob
 
       - job: SecondJob
         steps:
-          - bash: echo prodepolyjob
+          - bash: echo prodepolyJob
+
 
 
 
