@@ -16,43 +16,51 @@ stages:
         steps:
           - bash: echo Build Firstjob
           - bash: echo $(PipelineLevelVaraiable)
+          - bash: echo $(Build.BuildNumber)
+          - bash: echo $(Build.BuildId)
+          - bash: echo $(Build.SourceBranchName)
+          - bash: echo $(Build.SourcesDirectory)
+          - bash: echo $(Build.SourcesDirectory)
+          - bash: echo $(System.DefaultWorkingDirectory)
+          - bash: ls -R $(System.DefaultWorkingDirectory)
+          - bash: echo $(Build.ArtifactStagingDirectory)
 
-      - job: SecondJob
-        steps:
-          - bash: echo Build Secondjob
+  #     - job: SecondJob
+  #       steps:
+  #         - bash: echo Build Secondjob
 
-  - stage: DevDepoly
-    variables:
-       environment: Dev
-    dependsOn: Build
-    jobs:
-      - job: DevDepolyJob
-        steps:
-          - bash: echo $(PipelineLevelVaraiable) Build DevDepolyJob
+  # - stage: DevDepoly
+  #   variables:
+  #      environment: Dev
+  #   dependsOn: Build
+  #   jobs:
+  #     - job: DevDepolyJob
+  #       steps:
+  #         - bash: echo $(PipelineLevelVaraiable) Build DevDepolyJob
 
-  - stage: QADepoly
-    dependsOn: Build
-    jobs:
-      - job: QADepolyJob
-        steps:
-          - bash: echo QABuild QADepolyJob
+  # - stage: QADepoly
+  #   dependsOn: Build
+  #   jobs:
+  #     - job: QADepolyJob
+  #       steps:
+  #         - bash: echo QABuild QADepolyJob
 
-      - job: SecondJob
-        steps:
-          - bash: echo QA Build QADepolyJob
+  #     - job: SecondJob
+  #       steps:
+  #         - bash: echo QA Build QADepolyJob
 
-  - stage: prodepoly
-    dependsOn:
-      - DevDepoly
-      - QADepoly
-    jobs:
-      - job: prodepolyJob
-        steps:
-          - bash: echo prodepolyJob
+  # - stage: prodepoly
+  #   dependsOn:
+  #     - DevDepoly
+  #     - QADepoly
+  #   jobs:
+  #     - job: prodepolyJob
+  #       steps:
+  #         - bash: echo prodepolyJob
 
-      - job: SecondJob
-        steps:
-          - bash: echo prodepolyJob
+  #     - job: SecondJob
+  #       steps:
+  #         - bash: echo prodepolyJob
 
 
 
