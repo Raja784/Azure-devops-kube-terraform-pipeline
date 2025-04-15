@@ -24,7 +24,7 @@ stages:
       displayName: Build an image
       inputs:
         containerRegistry: 'in 28mins docker hub raja'
-        repository: 'raja0999/currency-exchange-devops'
+        repository: 'in28mins/currency-exchange-devops'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
